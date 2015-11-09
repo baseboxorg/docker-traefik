@@ -1,0 +1,27 @@
+[backends]
+  [backends.cours]
+    [backends.cours.servers.server1]
+    url = "http://195.154.161.46:3000"
+  [backends.traefik]
+    [backends.traefik.servers.server1]
+    url = "http://195.154.161.46:8080"
+  [backends.maildev]
+    [backends.maildev.servers.server1]
+    url = "http://195.154.161.46:1080"
+
+[frontends]
+  [frontends.cours]
+  backend = "cours"
+    [frontends.cours.routes.main]
+    rule = "Host"
+    value = "cours.vibioh.fr"
+  [frontends.traefik]
+  backend = "traefik"
+    [frontends.traefik.routes.main]
+    rule = "Host"
+    value = "traefik.vibioh.fr"
+  [frontends.maildev]
+  backend = "maildev"
+    [frontends.maildev.routes.main]
+    rule = "Host"
+    value = "maildev.vibioh.fr"

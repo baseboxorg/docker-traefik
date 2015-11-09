@@ -1,0 +1,17 @@
+# Reverse proxy port
+port = ":80"
+
+# Enable web configuration backend
+[web]
+
+# Web administration port
+address = ":8080"
+
+# Enable file configuration backend
+[file]
+
+# Rules file
+filename = "rules.toml"
+
+# Enable watch file changes
+watch = true
