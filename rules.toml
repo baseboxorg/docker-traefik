@@ -11,6 +11,9 @@
   [backends.montdenis]
     [backends.montdenis.servers.server1]
     url = "http://195.154.161.46:7000"
+  [backends.zenika]
+    [backends.zenika.servers.server1]
+    url = "http://195.154.161.46:8888"
 
 [frontends]
   [frontends.cours]
@@ -33,3 +36,8 @@
     [frontends.montdenis.routes.main]
     rule = "Host"
     value = "montdenis.vibioh.fr"
+  [frontends.zenika]
+  backend = "zenika"
+    [frontends.zenika.routes.main]
+    rule = "Host"
+    value = "zenika.vibioh.fr"
