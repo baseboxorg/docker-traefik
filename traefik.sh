@@ -9,4 +9,4 @@ docker run -d \
   --read-only \
   -m 256M \
   --cpu-shares=512 \
-  emilevauge/traefik
+  emilevauge/traefik:latest
