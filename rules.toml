@@ -18,26 +18,31 @@
 [frontends]
   [frontends.cours]
   backend = "cours"
+  passHostHeader = true
     [frontends.cours.routes.main]
     rule = "Host"
     value = "cours.vibioh.fr"
   [frontends.traefik]
   backend = "traefik"
+  passHostHeader = true
     [frontends.traefik.routes.main]
     rule = "Host"
     value = "traefik.vibioh.fr"
   [frontends.maildev]
   backend = "maildev"
+  passHostHeader = true
     [frontends.maildev.routes.main]
     rule = "Host"
     value = "maildev.vibioh.fr"
   [frontends.montdenis]
   backend = "montdenis"
+  passHostHeader = true
     [frontends.montdenis.routes.main]
     rule = "Host"
     value = "montdenis.vibioh.fr"
   [frontends.zenika]
   backend = "zenika"
+  passHostHeader = true
     [frontends.zenika.routes.main]
     rule = "Host"
     value = "zenika.vibioh.fr"
