@@ -2,18 +2,12 @@
   [backends.cours]
     [backends.cours.servers.server1]
     url = "http://195.154.161.46:3000"
-  [backends.traefik]
-    [backends.traefik.servers.server1]
-    url = "http://195.154.161.46:8080"
   [backends.maildev]
     [backends.maildev.servers.server1]
     url = "http://195.154.161.46:1080"
   [backends.montdenis]
     [backends.montdenis.servers.server1]
     url = "http://195.154.161.46:7000"
-  [backends.zenika]
-    [backends.zenika.servers.server1]
-    url = "http://195.154.161.46:8888"
 
 [frontends]
   [frontends.cours]
@@ -22,12 +16,6 @@
     [frontends.cours.routes.main]
     rule = "Host"
     value = "cours.vibioh.fr"
-  [frontends.traefik]
-  backend = "traefik"
-  passHostHeader = true
-    [frontends.traefik.routes.main]
-    rule = "Host"
-    value = "traefik.vibioh.fr"
   [frontends.maildev]
   backend = "maildev"
   passHostHeader = true
@@ -40,9 +28,3 @@
     [frontends.montdenis.routes.main]
     rule = "Host"
     value = "montdenis.vibioh.fr"
-  [frontends.zenika]
-  backend = "zenika"
-  passHostHeader = true
-    [frontends.zenika.routes.main]
-    rule = "Host"
-    value = "zenika.vibioh.fr"
