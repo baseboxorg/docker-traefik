@@ -5,9 +5,6 @@
   [backends.maildev]
     [backends.maildev.servers.server1]
     url = "http://195.154.161.46:1080"
-  [backends.montdenis]
-    [backends.montdenis.servers.server1]
-    url = "http://195.154.161.46:7000"
 
 [frontends]
   [frontends.cours]
@@ -22,9 +19,3 @@
     [frontends.maildev.routes.main]
     rule = "Host"
     value = "maildev.vibioh.fr"
-  [frontends.montdenis]
-  backend = "montdenis"
-  passHostHeader = true
-    [frontends.montdenis.routes.main]
-    rule = "Host"
-    value = "montdenis.vibioh.fr"
