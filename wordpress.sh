@@ -5,8 +5,8 @@ WORDPRESS_DIR=${2:-/var/wordpress}
 
 docker run -d \
   --name ${WORDPRESS_NAME}_volumes \
-  -v ${WORDPRESS_DIR}/${WORDPRESS_NAME}/mysql:/var/lib/mysql
-  -v ${WORDPRESS_DIR}/${WORDPRESS_NAME}/www:/var/www/localhost
+  -v ${WORDPRESS_DIR}/${WORDPRESS_NAME}/mysql:/var/lib/mysql \
+  -v ${WORDPRESS_DIR}/${WORDPRESS_NAME}/www:/var/www/localhost \
   --read-only \
   vibioh/wordpress:latest
 
