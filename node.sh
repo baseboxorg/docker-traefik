@@ -16,5 +16,5 @@ docker run -d \
   --read-only \
   -m 256M \
   --cpu-shares=512 \
-  vibioh/node:latest
+  vibioh/node:latest \
   node ${NODE_COMMAND}
