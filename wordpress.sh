@@ -4,12 +4,10 @@ WORDPRESS_NAME=${1:-wordpress}
 WORDPRESS_DIR=${2:-/var/wordpress}
 
 docker run -d \
-  --name ${WORDPRESS_NAME} \
+  --name ${WORDPRESS_NAME}_volumes \
   -v ${WORDPRESS_DIR}/${WORDPRESS_NAME}/mysql:/var/lib/mysql
   -v ${WORDPRESS_DIR}/${WORDPRESS_NAME}/www:/var/www/localhost
   --read-only \
-  -m 512M \
-  --cpu-shares=512 \
   vibioh/wordpress:latest
 
 docker run -d \
@@ -19,17 +17,19 @@ docker run -d \
   -e MYSQL_USER=wordpress \
   -e MYSQL_PASSWORD=W0rdPr3Ss! \
   -l traefik.enable=false \
-  --volumes-from ${WORDPRESS_NAME} \
+  --volumes-from ${WORDPRESS_NAME}_volumes \
   --read-only \
   -m 512M \
   --cpu-shares=512 \
   vibioh/mysql:latest
 
 docker run -d \
-  --name ${WORDPRESS_NAME}_php \
+  --name ${WORDPRESS_NAME} \
   --link ${WORDPRESS_NAME}_mysql:db \
   -l traefik.port=1080 \
   -l traefik.frontend.passHostHeader=true \
   --volumes-from ${WORDPRESS_NAME} \
   --read-only \
+  -m 512M \
+  --cpu-shares=512 \
   vibioh/php:latest
