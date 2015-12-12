@@ -28,7 +28,7 @@ docker run -d \
   --read-only \
   -m 128M \
   --cpu-shares=128 \
-  vibioh/maildev:latest
+  vibioh/maildev:latest \
   --web-user admin --web-pass ${PASSWORD}
 
 docker run -d \
