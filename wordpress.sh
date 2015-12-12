@@ -1,6 +1,7 @@
 #!/bin/sh
 
 WORDPRESS_NAME=${1:-wordpress}
+PASSWORD=${2:-W0rdPr3Ss!}
 
 docker run -d \
   --name ${WORDPRESS_NAME}_volumes \
@@ -12,7 +13,7 @@ docker run -d \
   -e MYSQL_ROOT_PASSWORD=s3Cr3T! \
   -e MYSQL_DATABASE=wordpress \
   -e MYSQL_USER=wordpress \
-  -e MYSQL_PASSWORD=W0rdPr3Ss! \
+  -e MYSQL_PASSWORD=${PASSWORD} \
   -l traefik.enable=false \
   --volumes-from ${WORDPRESS_NAME}_volumes \
   --read-only \
@@ -28,6 +29,7 @@ docker run -d \
   -m 128M \
   --cpu-shares=128 \
   vibioh/maildev:latest
+  --web-user admin --web-pass ${PASSWORD}
 
 docker run -d \
   --name ${WORDPRESS_NAME} \
@@ -38,7 +40,7 @@ docker run -d \
   -l traefik.port=1080 \
   -l traefik.frontend.passHostHeader=true \
   --volumes-from ${WORDPRESS_NAME}_volumes \
-  -m 512M \
+  -m 256M \
   --cpu-shares=512 \
   vibioh/php:latest
 
