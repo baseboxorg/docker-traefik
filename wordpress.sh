@@ -1,12 +1,9 @@
 #!/bin/sh
 
 WORDPRESS_NAME=${1:-wordpress}
-WORDPRESS_DIR=${2:-/var/wordpress}
 
 docker run -d \
   --name ${WORDPRESS_NAME}_volumes \
-  -v ${WORDPRESS_DIR}/${WORDPRESS_NAME}/mysql:/var/lib/mysql \
-  -v ${WORDPRESS_DIR}/${WORDPRESS_NAME}/www:/var/www/localhost \
   --read-only \
   vibioh/wordpress:latest
 
@@ -24,12 +21,24 @@ docker run -d \
   vibioh/mysql:latest
 
 docker run -d \
-  --name ${WORDPRESS_NAME} \
-  --link ${WORDPRESS_NAME}_mysql:db \
+  --name ${WORDPRESS_NAME}_mail \
   -l traefik.port=1080 \
   -l traefik.frontend.passHostHeader=true \
-  --volumes-from ${WORDPRESS_NAME} \
   --read-only \
+  -m 128M \
+  --cpu-shares=128 \
+  vibioh/maildev:latest
+
+docker run -d \
+  --name ${WORDPRESS_NAME} \
+  --link ${WORDPRESS_NAME}_mysql:db \
+  --link ${WORDPRESS_NAME}_mail:smtp \
+  -e SMTP_URL=smtp \
+  -e SMTP_PORT=1025 \
+  -l traefik.port=1080 \
+  -l traefik.frontend.passHostHeader=true \
+  --volumes-from ${WORDPRESS_NAME}_volumes \
   -m 512M \
   --cpu-shares=512 \
   vibioh/php:latest
+
