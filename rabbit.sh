@@ -7,4 +7,4 @@ docker run -d \
   -l traefik.port=15672 \
   -l traffic.frontend.passHostHeader=true \
   rabbitmq:3-management \
-  sh -c 'echo "[{rabbit, [{loopback_users, []}, {default_vhost,<<\"rabbit\">>}]}]." > /etc/rabbitmq/rabbitmq.config && rabbitmq-server'`
+  sh -c 'echo "[{rabbit, [{loopback_users, []}, {default_vhost,<<\"rabbit\">>}]}]." > /etc/rabbitmq/rabbitmq.config && rabbitmq-server'
