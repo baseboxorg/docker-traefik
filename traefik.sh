@@ -15,4 +15,3 @@ docker run -d \
   -m 64M \
   --cpu-shares=512 \
   emilevauge/traefik:latest
-

@@ -7,4 +7,3 @@ address = ":8080"
 domain = "vibioh.fr"
 endpoint = "unix:///var/run/docker.sock"
 watch = true
-

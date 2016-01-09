@@ -9,4 +9,3 @@ docker run -d \
   -m 128M \
   --cpu-shares=128 \
   vibioh/maildev:latest
-
