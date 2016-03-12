@@ -1,5 +1,8 @@
 port = ":80"
 
+[web]
+address = ":8080"
+
 [docker]
 domain = "vibioh.fr"
 endpoint = "unix:///var/run/docker.sock"

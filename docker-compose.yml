@@ -15,6 +15,11 @@ traefik-ssl:
   mem_limit: 134217728
 traefik-plain:
   image: emilevauge/traefik:latest
+  labels:
+    traefik.frontend.value: 'traefik.${DOMAIN}'
+    traefik.frontend.passHostHeader: 'true'
+    traefik.frontend.rule: 'Host'
+    traefik.port: '8080'
   ports:
   - 80:80/tcp
   volumes:
