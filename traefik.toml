@@ -1,15 +1,27 @@
-port = ":80"
+logLevel = "INFO"
+defaultEntryPoints = ["http", "https"]
+
+[acme]
+email = "vincent.boutour@gmail.com"
+storageFile = "/acme.json"
+onDemand = true
+entryPoint = "https"
+
+[[acme.domains]]
+  main = "vibioh.fr"
+  sans = ["traefik.vibioh.fr", "cours.vibioh.fr"]
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+  [entryPoints.https]
+  address = ":443"
 
 [web]
 address = ":8080"
+ReadOnly = true
 
 [docker]
 domain = "vibioh.fr"
 endpoint = "unix:///var/run/docker.sock"
 watch = true
-
-[acme]
-email = "vincent.boutour@gmail.com"
-storageFile = "acme.json"
-entryPoint = "https"
-onDemand = true
