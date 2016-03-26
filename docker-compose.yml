@@ -1,19 +1,4 @@
-traefik-ssl:
-  image: emilevauge/traefik:latest
-  ports:
-  - 443:443/tcp
-  volumes:
-  - /var/run/docker.sock:/var/run/docker.sock
-  - ${TRAEFIK_DIR}/traefik-ssl.toml:/traefik.toml
-  - ${TRAEFIK_DIR}/server.crt:/traefik.crt
-  - ${TRAEFIK_DIR}/server.key:/traefik.key
-  log_opt:
-    max-size: '50m'
-  restart: 'no'
-  read_only: true
-  cpu_shares: 256
-  mem_limit: 134217728
-traefik-plain:
+traefik:
   image: emilevauge/traefik:latest
   labels:
     traefik.frontend.value: 'traefik.${DOMAIN}'
@@ -24,7 +9,8 @@ traefik-plain:
   - 80:80/tcp
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
-  - ${TRAEFIK_DIR}/traefik-plain.toml:/traefik.toml
+  - ${TRAEFIK_DIR}/traefik.toml:/traefik.toml
+  - ${TRAEFIK_DIR}/acme.json:/acme.json
   log_opt:
     max-size: '50m'
   restart: 'no'
