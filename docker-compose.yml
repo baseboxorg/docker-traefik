@@ -7,7 +7,6 @@ traefik:
     traefik.port: '8080'
   ports:
   - 80:80/tcp
-  - 443:443/tcp
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
   - ${TRAEFIK_DIR}/traefik.toml:/traefik.toml
