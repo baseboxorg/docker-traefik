@@ -1,5 +1,6 @@
 traefik:
   image: emilevauge/traefik:latest
+  command: --web --web.ReadOnly=true --docker --docker.domain=${DOMAIN} --docker.endpoint="unix:///var/run/docker.sock" --docker.watch=true
   labels:
     traefik.frontend.value: 'traefik.${DOMAIN}'
     traefik.frontend.passHostHeader: 'true'
@@ -9,7 +10,6 @@ traefik:
   - 80:80/tcp
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
-  - ${TRAEFIK_DIR}/traefik.toml:/traefik.toml
   log_opt:
     max-size: '50m'
   restart: 'no'
