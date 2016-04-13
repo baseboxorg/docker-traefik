@@ -1,5 +1,5 @@
 traefik:
-  image: vibioh/traefik-arm:latest
+  image: traefik:latest
   command: --web --web.readOnly --docker --docker.domain=${DOMAIN}
   labels:
     traefik.frontend.value: 'traefik.${DOMAIN}'
