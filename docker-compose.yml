@@ -1,6 +1,6 @@
 traefik:
   image: emilevauge/traefik:latest
-  command: --web --web.ReadOnly=true --docker --docker.domain=${DOMAIN} --docker.endpoint="unix:///var/run/docker.sock" --docker.watch=true
+  command: --web --web.readOnly --docker --docker.domain=${DOMAIN}
   labels:
     traefik.frontend.value: 'traefik.${DOMAIN}'
     traefik.frontend.passHostHeader: 'true'
