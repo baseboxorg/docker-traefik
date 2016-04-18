@@ -1,5 +1,5 @@
 traefik:
-  image: traefik:latest
+  image: traefik
   command: --web --web.readOnly --docker --docker.domain=${DOMAIN}
   labels:
     traefik.frontend.value: 'traefik.${DOMAIN}'
