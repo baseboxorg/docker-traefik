@@ -2,9 +2,8 @@ traefik:
   image: traefik
   command: --web --web.readOnly --docker --docker.domain=${DOMAIN}
   labels:
-    traefik.frontend.value: 'traefik.${DOMAIN}'
     traefik.frontend.passHostHeader: 'true'
-    traefik.frontend.rule: 'Host'
+    traefik.frontend.rule: 'Host: traefik.${DOMAIN}'
     traefik.port: '8080'
   ports:
   - 80:80/tcp
