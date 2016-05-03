@@ -7,6 +7,8 @@ traefik:
     traefik.port: '8080'
   ports:
   - 80:80/tcp
+  networks:
+  - swarm-net
   volumes:
   - ${CERT_PATH}:/ssl
   - /var/run/docker.sock:/var/run/docker.sock
