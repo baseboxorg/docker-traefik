@@ -1,0 +1,19 @@
+traefik:
+  image: traefik
+  command: --web --web.readOnly --docker --docker.domain=${DOMAIN} --docker.endpoint tcp://${SWARM_IP}:2375 --docker.tls --docker.tls.ca /ssl/ca.pem --docker.tls.cert /ssl/cert.pem --docker.tls.cert /ssl/key.pem --docker.tls.insecureSkipVerify
+  labels:
+    traefik.frontend.passHostHeader: 'true'
+    traefik.frontend.rule: 'Host: traefik.${DOMAIN}'
+    traefik.port: '8080'
+  ports:
+  - 80:80/tcp
+  volumes:
+  - ${CERT_PATH}:/ssl
+  - /var/run/docker.sock:/var/run/docker.sock
+  - /dev/null:/traefik.toml
+  log_opt:
+    max-size: '50m'
+  restart: 'no'
+  read_only: true
+  cpu_shares: 256
+  mem_limit: 134217728
