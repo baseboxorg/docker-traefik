@@ -13,7 +13,7 @@ services:
     volumes:
     - ${CERT_PATH}:/ssl
     logging:
-      driver: json
+      driver: json-file
       options:
         max-size: '50m'
     restart: 'no'
