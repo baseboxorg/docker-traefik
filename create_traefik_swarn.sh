@@ -12,4 +12,4 @@ docker run \
     --net=swarm-net \
     -v ${CERT_PATH}:/ssl \
     --read-only \
-    traefik -c /dev/null --web --web.readOnly --docker --docker.domain=${DOMAIN} --docker.endpoint tcp://${SWARM_IP}:2375 --docker.tls --docker.tls.ca /ssl/ca.pem --docker.tls.cert /ssl/cert.pem --docker.tls.cert /ssl/key.pem --docker.tls.insecureSkipVerify
+    traefik -c /dev/null --web --web.readOnly --docker --docker.domain=${DOMAIN} --docker.endpoint tcp://${SWARM_IP}:2375 --docker.tls --docker.tls.ca /ssl/ca.pem --docker.tls.cert /ssl/cert.pem --docker.tls.key /ssl/key.pem --docker.tls.insecureSkipVerify
