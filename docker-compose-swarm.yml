@@ -8,6 +8,8 @@ services:
       traefik.frontend.passHostHeader: 'true'
       traefik.frontend.rule: 'Host: traefik.${DOMAIN}'
       traefik.port: '8080'
+    environment:
+    - constraint: 'node==docker'
     ports:
     - 80:80/tcp
     volumes:
