@@ -9,7 +9,7 @@ services:
       traefik.frontend.rule: 'Host: traefik.${DOMAIN}'
       traefik.port: '8080'
     environment:
-    - CONSTRAINT=node==${SWARM_NODE}
+    - constraint=node==${SWARM_NODE}
     ports:
     - 80:80/tcp
     volumes:
