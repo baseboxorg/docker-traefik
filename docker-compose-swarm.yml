@@ -15,9 +15,9 @@ services:
     volumes:
     - ${CERT_PATH}:/ssl
     logging:
-      driver: json-file
+      driver: gelf
       options:
-        max-size: '50m'
+        gelf-address: udp://logstash:12201
     restart: 'no'
     read_only: true
 
