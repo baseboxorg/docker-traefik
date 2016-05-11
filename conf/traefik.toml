@@ -1,0 +1,16 @@
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+
+[acme]
+email = "vincent.boutour@gmail.com"
+storageFile = "/conf/acme.json"
+entryPoint = "https"
+onDemand = true
+
+[[acme.domains]]
+  main = "vibioh.fr"
+  sans = ["traefik.vibioh.fr", "kibana.vibioh.fr", "cours.vibioh.fr"]
