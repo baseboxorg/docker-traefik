@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  traefik:
+    environment:
+    - affinity:container==swarm_manager
+
+networks:
+  default:
+    external:
+      name: swarm-net
