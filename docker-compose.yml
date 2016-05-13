@@ -3,17 +3,15 @@ version: '2'
 services:
   traefik:
     image: traefik
-    command: -c /dev/null --entryPoints='Name:http Address::1080 Redirect.EntryPoint:https' --entryPoints='Name:https Address::10443 TLS:/tls/traefik.crt,/tls/traefik.key' --web --web.readOnly --docker --docker.domain=${DOMAIN} --docker.endpoint tcp://${DOCKER_HOST} --docker.tls --docker.tls.ca /ssl/ca.pem --docker.tls.cert /ssl/cert.pem --docker.tls.key /ssl/key.pem --docker.tls.insecureSkipVerify
+    command: -c /dev/null --web --web.readOnly --docker --docker.domain=${DOMAIN} --docker.endpoint tcp://${DOCKER_HOST} --docker.tls --docker.tls.ca /ssl/ca.pem --docker.tls.cert /ssl/cert.pem --docker.tls.key /ssl/key.pem --docker.tls.insecureSkipVerify
     labels:
       traefik.frontend.passHostHeader: 'true'
       traefik.frontend.rule: 'Host: traefik.${DOMAIN}'
       traefik.port: '8080'
     ports:
-    - 80:1080/tcp
-    - 443:10443/tcp
+    - 80:80/tcp
     volumes:
     - ${DOCKER_CERT_PATH}:/ssl
-    - ${TLS_CERT_DIR}:/tls
     logging:
       driver: json-file
       options:
