@@ -3,7 +3,7 @@ version: '2'
 services:
   traefik:
     image: traefik
-    command: -c /dev/null --defaultentrypoints=http --entryPoints='Name:http Address::80' --web --web.readOnly --docker --docker.domain=${DOMAIN} --docker.endpoint=tcp://${DOCKER_HOST} --docker.tls --docker.tls.ca=/ssl/ca.pem --docker.tls.cert=/ssl/cert.pem --docker.tls.key=/ssl/key.pem --docker.tls.insecureSkipVerify
+    command: -c /dev/null --defaultentrypoints=http --entryPoints='Name:http Address::80' --web --web.readOnly --docker --docker.domain=${DOMAIN}
     labels:
       traefik.frontend.passHostHeader: 'true'
       traefik.frontend.rule: 'Host: traefik.${DOMAIN}'
@@ -11,7 +11,7 @@ services:
     ports:
     - 80:80/tcp
     volumes:
-    - ${DOCKER_CERT_PATH}:/ssl
+    - /var/run/docker.sock:/var/run/docker.sock
     logging:
       driver: json-file
       options:
