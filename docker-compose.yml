@@ -3,7 +3,7 @@ version: '2'
 services:
   traefik:
     image: traefik
-    command: -c /dev/null --defaultentrypoints=http --entryPoints='Name:http Address::80' --web --web.readOnly --docker --docker.domain=${DOMAIN}
+    command: -c /dev/null --defaultentrypoints=http --entryPoints='Name:http Address::80' --docker --docker.domain=${DOMAIN}
     labels:
       traefik.frontend.passHostHeader: 'true'
       traefik.frontend.rule: 'Host: traefik.${DOMAIN}'
