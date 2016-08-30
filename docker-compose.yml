@@ -3,11 +3,9 @@ version: '2'
 services:
   traefik:
     image: traefik:reblochon
-    command: -c /dev/null --web --web.readOnly --defaultentrypoints=http --entryPoints='Name:http Address::80' --docker --docker.domain=${DOMAIN}
+    command: -c /dev/null --defaultentrypoints=http --entryPoints='Name:http Address::80' --docker --docker.domain=${DOMAIN}
     labels:
-      traefik.frontend.passHostHeader: 'true'
-      traefik.frontend.rule: 'Host: traefik.${DOMAIN}'
-      traefik.port: '8080'
+      traefik.enable: 'false'
     ports:
     - 80:80/tcp
     volumes:
