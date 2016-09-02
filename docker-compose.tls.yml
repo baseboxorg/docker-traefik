@@ -1,7 +1,0 @@
-version: '2'
-
-services:
-  traefik:
-    command: -c /dev/null --defaultentrypoints=http --entryPoints='Name:http Address::80' --web --web.readOnly --docker --docker.domain=${DOMAIN} --docker.endpoint=${DOCKER_HOST} --docker.tls=${DOCKER_TLS} --docker.tls.ca=/ssl/ca.pem --docker.tls.cert=/ssl/cert.pem --docker.tls.key=/ssl/key.pem --docker.tls.insecureSkipVerify
-    volumes:
-    - ${DOCKER_CERT_PATH}:/ssl
