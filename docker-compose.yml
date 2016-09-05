@@ -3,6 +3,7 @@ version: '2'
 services:
   traefik:
     image: traefik:reblochon
+    hostname: traefik
     command: -c /dev/null --defaultentrypoints=http --entryPoints='Name:http Address::80' --docker --docker.domain=${DOMAIN}
     labels:
       traefik.enable: 'false'
